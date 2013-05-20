@@ -8,6 +8,10 @@ Author: Chris Northwood (modified by Dan Phiffer)
 Author URI: http://www.pling.org.uk/
 */
 
+/* 
+Warranty voided by maligree@cloudidentity.co.uk, for Conext.
+*/
+
 add_filter('query_vars', 'json_feed_queryvars');
 
 function json_feed_queryvars($qvars)
@@ -21,10 +25,20 @@ function json_feed_queryvars($qvars)
 function json_feed()
 {
     $output = array();
+    /* Inject some blog info. */
+    $output['bloginfo'] = array(
+        'title' => get_bloginfo('name'),
+        'description' => get_bloginfo('description'),
+        'site_url' => get_bloginfo('siteurl')
+    );
+    
+    /* Attribute for the actual blog posts. */
+    $output['posts'] = array();
+
     while (have_posts())
     {
         the_post();
-        $output[] = array
+        $output['posts'][] = array
         (
             'id' => (int) get_the_ID(),
             'permalink' => get_permalink(),
