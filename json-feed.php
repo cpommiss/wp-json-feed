@@ -60,6 +60,9 @@ function json_feed()
         header('Content-Type: application/javascript; charset=' . get_option('blog_charset'), true);
         echo get_query_var('jsonp') . '(' . json_encode($output) . ')';
     }
+
+    /* 404, what? */
+    status_header(200);
 }
 
 function json_feed_date_format()
