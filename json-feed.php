@@ -29,7 +29,7 @@ function json_feed()
     $output['bloginfo'] = array(
         'title' => get_bloginfo('name'),
         'description' => get_bloginfo('description'),
-        'site_url' => get_bloginfo('url')
+        'site_url' => home_url('', 'https'), 
     );
     
     /* Attribute for the actual blog posts. */
