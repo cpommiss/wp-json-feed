@@ -47,7 +47,8 @@ function json_feed()
             'excerpt' => get_the_excerpt(),
             'date' => get_the_time(json_feed_date_format()),
             'categories' => json_feed_categories(),
-            'tags' => json_feed_tags()
+            'tags' => json_feed_tags(),
+            'format' => ((has_post_format()) ? get_post_format() : '')
         );
     }
     if (get_query_var('jsonp') == '')
